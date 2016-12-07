@@ -5,11 +5,12 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.all
+    @list = List.new
   end
 
-  # GET /lists/1
-  # GET /lists/1.json
   def show
+    @list = List.find(params[:id])
+    @gifts = Gift.where(list_id: params[:id])
   end
 
   # GET /lists/new
@@ -69,6 +70,7 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.fetch(:list, {})
+      params.require(:list).permit(:name, :user_id)
+      # params.fetch(:list, {})
     end
 end

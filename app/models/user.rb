@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :gifts, foreign_key: "requester_id"
   has_many :gifts, foreign_key: "buyer_id"
-  belongs_to :list
+  # belongs_to :list, through: :gifts
 end

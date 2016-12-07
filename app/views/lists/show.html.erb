@@ -1,4 +1,36 @@
+
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_list_path(@list) %> |
-<%= link_to 'Back', lists_path %>
+<h1><%= @list.name %></h1>
+<div id='list' class='jumbotron'>
+  <table class="table table-hover table-striped table-condensed">
+    <thead>
+      <tr>
+        <tr text-align=center>
+          <th>Requester</th>
+          <th>Gift</th>
+          <th></th>
+          <th>Buyer</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @gifts.each do |gift| %>
+          <tr>
+            <td><%= gift.requester.email %></td>
+            <td><%= gift.name  %></td>
+            <% if gift.claimed%>
+              <td><%= 'Claimed by: ' + gift.buyer.email%> </td>
+            <% else %>
+            <td>
+                <%= link_to 'I Got This!', gift_path(gift), class: "btn btn-default btn-danger"  %>
+            </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Back', root_path, class: "btn btn-default btn-primary"  %>
+  </div>
+</div>

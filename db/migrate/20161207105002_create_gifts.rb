@@ -4,6 +4,7 @@ class CreateGifts < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :buyer_id
       t.integer :requester_id
+      t.integer :list_id
 
       t.timestamps
     end
