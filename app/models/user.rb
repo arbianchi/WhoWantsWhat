@@ -3,4 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :gifts, foreign_key: "requester_id"
+  has_many :gifts, foreign_key: "buyer_id"
+  belongs_to :list
 end
