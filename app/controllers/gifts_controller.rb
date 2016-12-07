@@ -24,7 +24,7 @@ class GiftsController < ApplicationController
   # POST /gifts
   # POST /gifts.json
   def create
-    requester = User.where(username: gift_params[:requester]).first.id
+    requester = User.where(username: gift_params[:requester].downcase).first.id
     @gift = Gift.create!(name: gift_params[:name], buyer_id: 1, requester_id: requester, list_id: 1)
    redirect_to list_path(List.find(1)), notice: 'Gift added!'
   end
