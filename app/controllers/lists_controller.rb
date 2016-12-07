@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @gifts = Gift.where(list_id: params[:id])
+    @gift = Gift.new
+    @users = User.all.pluck(:username).sort.map{ |name| name.capitalize }
   end
 
   # GET /lists/new

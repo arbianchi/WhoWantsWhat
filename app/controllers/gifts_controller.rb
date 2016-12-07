@@ -24,17 +24,9 @@ class GiftsController < ApplicationController
   # POST /gifts
   # POST /gifts.json
   def create
-    @gift = Gift.new(gift_params)
-
-    respond_to do |format|
-      if @gift.save
-        format.html { redirect_to @gift, notice: 'Gift was successfully created.' }
-        format.json { render :show, status: :created, location: @gift }
-      else
-        format.html { render :new }
-        format.json { render json: @gift.errors, status: :unprocessable_entity }
-      end
-    end
+    requester = User.where(username: gift_params[:requester]).first.id
+    @gift = Gift.create!(name: gift_params[:name], buyer_id: 1, requester_id: requester, list_id: 1)
+   redirect_to list_path(List.find(1)), notice: 'Gift added!'
   end
 
   # PATCH/PUT /gifts/1
@@ -69,6 +61,7 @@ class GiftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gift_params
-      params.fetch(:gift, {})
+      params.require(:gift).permit(:name, :requester)
+      # params.fetch(:gift, {})
     end
 end

@@ -17,20 +17,27 @@
       <tbody>
         <% @gifts.each do |gift| %>
           <tr>
-            <td><%= gift.requester.email %></td>
+            <td><%= gift.requester.username.capitalize%></td>
             <td><%= gift.name  %></td>
             <% if gift.claimed%>
-              <td><%= 'Claimed by: ' + gift.buyer.email%> </td>
+              <td class: "btn btn-default btn-danger"><span class="label label-success">Claimed</span></td>
             <% else %>
             <td>
                 <%= link_to 'I Got This!', gift_path(gift), class: "btn btn-default btn-danger"  %>
             </td>
             <% end %>
+            <td><%= gift.buyer.username.capitalize%> </td>
+            <td >
+              <%= link_to 'Edit', edit_gift_path(gift), class: "btn btn-warning" %>
+              <%= link_to 'Delete', gift, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
 
-    <%= link_to 'Back', root_path, class: "btn btn-default btn-primary"  %>
   </div>
+    <%= render 'gift', gift: @gift%>
+    <br>
+    <%= link_to 'Back', root_path, class: "btn btn-default btn-primary"  %>
 </div>
