@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = List.all
+    @lists = current_user.lists
     @list = List.new
   end
 
@@ -10,7 +10,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @gifts = Gift.where(list_id: params[:id])
     @gift = Gift.new
-    @users = User.all.pluck(:username).sort.map{ |name| name.capitalize }
+    @users = @list.users.all.pluck(:username).sort.map{ |name| name.capitalize }
   end
 
   def new
@@ -21,17 +21,8 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
-
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render :show, status: :created, location: @list }
-      else
-        format.html { render :new }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
-      end
-    end
+    @list = current_user.lists.create(name: list_params[:name])
+    redirect_to lists_path
   end
 
   def update
