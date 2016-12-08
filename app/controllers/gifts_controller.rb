@@ -3,8 +3,17 @@ class GiftsController < ApplicationController
 
   def index
     @gift = Gift.new
-    @requested_gifts = Gift.where(requester_id: current_user.id)
-    @claimed_gifts = Gift.where(buyer_id: current_user.id)
+
+    @requested_gifts = [ ]
+    @claimed_gifts = [ ]
+
+    Gift.all.each do |gift|
+        if gift.buyer_id == current_user.id
+            @claimed_gifts.push(gift)
+        elsif gift.created_by == current_user.id && gift.requester_id == current_user.id
+            @requested_gifts.push(gift)
+        end
+    end
   end
 
   def show
@@ -61,6 +70,6 @@ class GiftsController < ApplicationController
   end
 
   def create_gift requester
-    @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list_id: 1)
+    @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list_id: 1, created_by: current_user.id)
     end
 end

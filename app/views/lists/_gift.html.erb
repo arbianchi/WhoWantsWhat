@@ -3,6 +3,6 @@
   <%= bootstrap_form_for @gift, url: gifts_path do |f| %>
   <%= f.text_field :name, hide_label: true, placeholder: "Item" %>
   <%= f.select :requester,  @users, label: 'For' %>
-  <button class="btn btn-primary btn-sm glyphicon glyphicon-gift">Add</button>
+  <button class="btn btn-primary btn-sm">Add</button>
   <% end %>
 </div>
