@@ -32,7 +32,7 @@
                 <td><%= gift.buyer.username.capitalize%> </td>
                 <% else %>
                 <td>
-                    <%= link_to 'I Got This!', claim_gift_path(gift), method: :post, class: "btn btn-default btn-success btn-sm"  %>
+                    <%= link_to 'I Got This!', claim_gift_path(gift), method: :post, class: "btn btn-default btn-primary btn-sm"  %>
                 </td>
                 <td> ----- </td>
                 <% end %>

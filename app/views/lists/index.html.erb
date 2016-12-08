@@ -1,7 +1,9 @@
 <div class='jumbotron'>
   <p id="notice"><%= notice %></p>
 
-  <h2><font color="purple">Gift Lists:</font></h2>
+  <h3><font color="purple">Gift Lists:</font></h3>
+
+<br>
 
   <table class="table table-hover table-striped table-condensed">
     <thead>
@@ -14,8 +16,10 @@
       <% @lists.each do |list| %>
         <tr>
           <td><%= link_to list.name, list_path(list) %></td>
-          <td><%= link_to 'Edit', edit_list_path(list) %></td>
-          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.id == 1 %>
+              <td><%= link_to 'Edit', edit_list_path(list) %></td>
+              <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
         </tr>
       <% end %>
     </tbody>
