@@ -1,5 +1,14 @@
+<div class='container top-sec'>
+    <div class="col-lg-5">
+    <%= image_tag('pico2.png') %>
+      <div class="well sidebar-nav container-fluid pull-left col-lg-3">
+        <%= render 'lists/gift', gift: @gift%>
+      </div>
+    </div>
+</div>
+
 <div id='list' class='jumbotron'>
-  <h3><%= @list.name %></h3>
+    <h2 class='pull-left' id='list-name'><%= @list.name %>s</h2>
   <table class="table table-hover table-striped table-condensed">
     <thead>
       <tr>
@@ -27,11 +36,11 @@
                 <td> ----- </td>
               <% end %>
               <td >
-                <%= link_to 'X', unclaim_gift_path(gift), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'X', gift, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
               </td>
               <% if gift.buyer_id == current_user.id %>
               <td >
-                <%= link_to 'Unclaim', gift, method: :delete, class: "btn btn-warning btn-sm"%>
+                <%= link_to 'Unclaim', unclaim_gift_path(gift), method: :delete, class: "btn btn-warning btn-sm"%>
               </td>
             <%end%>
             </tr>
@@ -43,11 +52,6 @@
   </div>
 </div>
 
-<div class="col-lg-3">
-  <div class="well sidebar-nav container-fluid">
-    <%= render 'lists/gift', gift: @gift%>
-  </div>
-</div><!--/.well -->
 
 <script>
   $(".alert-success").fadeOut(2000);

@@ -13,17 +13,13 @@ class ListsController < ApplicationController
     @users = User.all.pluck(:username).sort.map{ |name| name.capitalize }
   end
 
-  # GET /lists/new
   def new
     @list = List.new
   end
 
-  # GET /lists/1/edit
   def edit
   end
 
-  # POST /lists
-  # POST /lists.json
   def create
     @list = List.new(list_params)
 
@@ -38,8 +34,6 @@ class ListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lists/1
-  # PATCH/PUT /lists/1.json
   def update
     respond_to do |format|
       if @list.update(list_params)
@@ -54,10 +48,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    respond_to do |format|
-      format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @list
   end
 
   private
