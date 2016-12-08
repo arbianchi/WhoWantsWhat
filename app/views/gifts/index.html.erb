@@ -1,42 +1,36 @@
-<div id='list' class='jumbotron'>
-    <h2 id='list-name'>My Gifts</h2>
-  <table class="table table-hover table-striped table-condensed">
-    <thead>
-      <tr>
-        <tr text-align=center>
-          <th>Requested</th>
-        </tr>
-      </thead>
+<div class='container'>
+    <h4 id='list-name'>My Gifts</h4>
+</div>
 
-      <tbody>
-            <tr>
-        <% @requested_gifts.each do |gift| %>
-              <td><%= gift.name  %></td>
-          <% end %>
-            </tr>
-      </tbody>
-    </table>
-
-    <table class="table table-hover table-striped table-condensed">
-      <thead>
-        <tr>
-          <tr text-align=center>
-            <th>Claimed</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-              <tr>
-          <% @claimed_gifts.each do |rgift| %>
-                <td><%= rgift.name.capitalize  %></td>
-                <td>for</td>
-                <td><%= rgift.requester.username.capitalize  %></td>
+<div class='sigin'>
+    <div class="border-form-div">
+        <h4 id='list-name'>My Wishlist</h4>
+        <ul>
+            <% @requested_gifts.each do |gift| %>
+            <li><%= gift.name  %></li>
             <% end %>
-              </tr>
-        </tbody>
-      </table>
+        </ul>
+    </div>
 
-  </div>
+    <div id='list' class='jumbotron col-lg-6'>
+        <table class="table table-hover table-striped table-condensed">
+            <thead>
+                <tr text-align=center>
+                    <th>Claimed Gifts</th>
+                    <th></th>
+                    <th>Recipient</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <% @claimed_gifts.each do |rgift| %>
+                    <td><%= rgift.name.capitalize  %></td>
+                    <td>for</td>
+                    <td><%= rgift.requester.username.capitalize  %></td>
+                    <% end %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
