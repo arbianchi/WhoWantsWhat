@@ -4,12 +4,13 @@
 
 <div class='sigin'>
     <div class="border-form-div">
-        <h4 id='list-name'>My Wishlist</h4>
+        <h4 id='list-name'><strong>My Wishlist</strong></h4>
         <ul>
             <% @requested_gifts.each do |gift| %>
             <li><%= gift.name  %></li>
             <% end %>
         </ul>
+        <%= render 'wishlist', gift: @gift%>
     </div>
 
     <div id='list' class='jumbotron col-lg-6'>

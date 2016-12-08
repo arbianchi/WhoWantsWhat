@@ -2,6 +2,7 @@ class GiftsController < ApplicationController
   before_action :set_constants, except: [:index, :new, :create]
 
   def index
+    @gift = Gift.new
     @requested_gifts = Gift.where(requester_id: current_user.id)
     @claimed_gifts = Gift.where(buyer_id: current_user.id)
   end
@@ -15,9 +16,15 @@ class GiftsController < ApplicationController
 
   def create
     @list = List.find(1)
-    requester = User.where(username: gift_params[:requester].downcase).first.id
-    @gift = Gift.create!(name: gift_params[:name], requester_id: requester, list_id: 1)
-    redirect_to @list
+    if gift_params[:requester].present?
+        requester = User.where(username: gift_params[:requester].downcase).first
+        create_gift( requester )
+        redirect_to @list
+    else
+        requester = current_user
+        create_gift( requester )
+        redirect_to gifts_path
+    end
   end
 
   def update
@@ -52,4 +59,8 @@ class GiftsController < ApplicationController
     params.require(:gift).permit(:name, :requester)
     # params.fetch(:gift, {})
   end
+
+  def create_gift requester
+    @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list_id: 1)
+    end
 end
