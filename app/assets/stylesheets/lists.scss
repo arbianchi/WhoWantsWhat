@@ -12,17 +12,20 @@
   }
 
 .sidebar-nav {
-    margin-left: 30px;
-    margin-top: 60px;
+    display: inline-block;
+    // margin-left: 30px;
+    // margin-top: 60px;
     vertical-align: middle;
     height: 250px;
+    width: 300px;
 }
 
-#picolist {
+.pico-list {
     width: 350px;
+    display: inline-block;
     // height: auto;
-    margin-right: 100px;
-    margin-top: 40px;
+    // margin-right: 50px;
+    // margin-top: 40px;
     // align: center;
     // display: block;
 
@@ -30,4 +33,5 @@
 
 .top-sec{
     display: inline-block;
+    margin: auto;
 }

@@ -19,8 +19,8 @@ body {
   background: url('/assets/presents.jpg');
 }
 
-img {
-    max-width: 400px;
+.pico-signin {
+    max-width: 450px;
     float: right;
     margin-right: 17%;
 }
@@ -33,10 +33,10 @@ img {
     display: inline-block;
   max-width: 300px;
   padding: 19px 29px 29px;
-  margin-left: 10%;
+  margin-left:20%;
   margin-top: 10%;
   background-color: #fff;
-  border: 1px solid #e5e5e5;
+  border: 1px solid blue;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;

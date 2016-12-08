@@ -1,61 +1,59 @@
-<div class='container top-sec'>
-    <div class="col-lg-5">
-        <div id='picolist' class='pull-right'
-    <%= image_tag('pico2.png') %>
-</div>
-      <div class="well sidebar-nav container-fluid pull-left col-lg-3">
+<div class='top-sec'>
+    <div class="well sidebar-nav container-fluid">
         <%= render 'lists/gift', gift: @gift%>
-      </div>
+    </div>
+    <div>
+        <%= image_tag('pico2.png', class: 'pico-list') %>
     </div>
 </div>
 
 <div id='list' class='jumbotron'>
     <h2 class='pull-left' id='list-name'><%= @list.name %>s</h2>
-  <table class="table table-hover table-striped table-condensed">
-    <thead>
-      <tr>
-        <tr text-align=center>
-          <th>Requester</th>
-          <th>Gift</th>
-          <th></th>
-          <th>Buyer</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @gifts.each do |gift| %>
-          <% if gift.requester_id != current_user.id%>
+    <table class="table table-hover table-striped table-condensed">
+        <thead>
             <tr>
-              <td><%= gift.requester.username.capitalize%></td>
-              <td><%= gift.name  %></td>
-              <% if gift.buyer.present?%>
-                <td class: "btn btn-default btn-success"><span class="label label-success">Claimed</span></td>
-                <td><%= gift.buyer.username.capitalize%> </td>
-              <% else %>
-                <td>
-                  <%= link_to 'I Got This!', claim_gift_path(gift), method: :post, class: "btn btn-default btn-success btn-sm"  %>
-                </td>
-                <td> ----- </td>
-              <% end %>
-              <td >
-                <%= link_to 'X', gift, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
-              </td>
-              <% if gift.buyer_id == current_user.id %>
-              <td >
-                <%= link_to 'Unclaim', unclaim_gift_path(gift), method: :delete, class: "btn btn-warning btn-sm"%>
-              </td>
-            <%end%>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+                <tr text-align=center>
+                    <th>Requester</th>
+                    <th>Gift</th>
+                    <th></th>
+                    <th>Buyer</th>
+                </tr>
+            </thead>
 
-  </div>
+            <tbody>
+                <% @gifts.each do |gift| %>
+                <% if gift.requester_id != current_user.id%>
+                <tr>
+                    <td><%= gift.requester.username.capitalize%></td>
+                    <td><%= gift.name  %></td>
+                    <% if gift.buyer.present?%>
+                    <td class: "btn btn-default btn-success"><span class="label label-success">Claimed</span></td>
+                    <td><%= gift.buyer.username.capitalize%> </td>
+                    <% else %>
+                    <td>
+                        <%= link_to 'I Got This!', claim_gift_path(gift), method: :post, class: "btn btn-default btn-success btn-sm"  %>
+                    </td>
+                    <td> ----- </td>
+                    <% end %>
+                    <td >
+                        <%= link_to 'X', gift, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
+                    </td>
+                    <% if gift.buyer_id == current_user.id %>
+                    <td >
+                        <%= link_to 'Unclaim', unclaim_gift_path(gift), method: :delete, class: "btn btn-warning btn-sm"%>
+                    </td>
+                    <%end%>
+                </tr>
+                <% end %>
+                <% end %>
+            </tbody>
+        </table>
+
+    </div>
 </div>
 
 
 <script>
-  $(".alert-success").fadeOut(2000);
+$(".alert-success").fadeOut(2000);
 
 </script>
