@@ -2,7 +2,8 @@ class GiftsController < ApplicationController
   before_action :set_constants, except: [:index, :new, :create]
 
   def index
-    @gifts = Gift.all
+    @requested_gifts = Gift.where(requester_id: current_user.id)
+    @claimed_gifts = Gift.where(buyer_id: current_user.id)
   end
 
   def show
