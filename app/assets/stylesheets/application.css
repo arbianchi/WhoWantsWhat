@@ -14,3 +14,6 @@
  *= require_self
  *= require rails_bootstrap_forms
 */
+body {
+  background: url('/assets/presents.jpg');
+}

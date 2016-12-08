@@ -1,8 +1,8 @@
 <div class="actions" >
   <h4>Add Gift</h4>
   <%= bootstrap_form_for @gift, url: gifts_path do |f| %>
-  <%= f.text_field :requester, hide_label: true, placeholder: "Item" %>
-  <%= f.select :name,  @users, label: 'For' %>
-  <button class="btn btn-primary btn-sm">Submit</button>
+  <%= f.text_field :name, hide_label: true, placeholder: "Item" %>
+  <%= f.select :requester,  @users, label: 'For' %>
+  <button class="btn btn-primary btn-sm">Add</button>
   <% end %>
 </div>

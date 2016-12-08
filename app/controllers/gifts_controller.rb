@@ -1,67 +1,56 @@
 class GiftsController < ApplicationController
-  before_action :set_gift, only: [:show, :edit, :update, :destroy]
+  before_action :set_constants, except: [:index, :new, :create]
 
-  # GET /gifts
-  # GET /gifts.json
   def index
     @gifts = Gift.all
   end
 
-  # GET /gifts/1
-  # GET /gifts/1.json
   def show
   end
 
-  # GET /gifts/new
   def new
     @gift = Gift.new
   end
 
-  # GET /gifts/1/edit
-  def edit
-  end
-
-  # POST /gifts
-  # POST /gifts.json
   def create
+    @list = List.find(1)
     requester = User.where(username: gift_params[:requester].downcase).first.id
-    @gift = Gift.create!(name: gift_params[:name], buyer_id: 1, requester_id: requester, list_id: 1)
-   redirect_to list_path(List.find(1)), notice: 'Gift added!'
+    @gift = Gift.create!(name: gift_params[:name], requester_id: requester, list_id: 1)
+    flash[:notice] = "Gift added!"
+    redirect_to list_path(@list.id)
   end
 
-  # PATCH/PUT /gifts/1
-  # PATCH/PUT /gifts/1.json
   def update
-    respond_to do |format|
-      if @gift.update(gift_params)
-        format.html { redirect_to @gift, notice: 'Gift was successfully updated.' }
-        format.json { render :show, status: :ok, location: @gift }
-      else
-        format.html { render :edit }
-        format.json { render json: @gift.errors, status: :unprocessable_entity }
-      end
-    end
+    set_gift
+    @gift.update(buyer_id: current_user.id )
+    redirect_to list_path(@list.id)
   end
 
-  # DELETE /gifts/1
-  # DELETE /gifts/1.json
   def destroy
     @gift.destroy
-    respond_to do |format|
-      format.html { redirect_to gifts_url, notice: 'Gift was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:alert] = 'Gift removed!'
+    redirect_to list_path(@list.id)
+  end
+
+  def claim
+    @gift.update(buyer_id: current_user.id)
+    redirect_to list_path(@list.id)
+  end
+
+  def unclaim
+    @gift.update(buyer_id: nil)
+    redirect_to list_path(@list.id)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gift
-      @gift = Gift.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gift_params
-      params.require(:gift).permit(:name, :requester)
-      # params.fetch(:gift, {})
-    end
+  def set_constants
+    @gift = Gift.find(params[:id])
+    @list = List.find(1)
+  end
+
+  def gift_params
+    params.require(:gift).permit(:name, :requester)
+    # params.fetch(:gift, {})
+  end
 end

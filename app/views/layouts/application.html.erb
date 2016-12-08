@@ -47,29 +47,43 @@
         </button>
         <a class="navbar-brand" href="#">WhoWantsWhat</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
+          <ul style="font-size:20px" class="nav navbar-nav pull-right">
             <li><%= link_to "Link1", "/path1"  %></li>
             <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            <% else %>
+              <li><%= link_to('Login', new_user_session_path)  %></li>
+              <li><%= link_to("Register", new_user_registration_path(User.new))  %></li>
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-        </div><!--/span-->
-      </div><!--/row-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
+    </div><!--/span-->
+  </div><!--/row-->
 
-      <footer>
-        <p>&copy; Adina 2016</p>
-      </footer>
+</div> <!-- /container -->
 
-    </div> <!-- /container -->
+</body>
+      </html>
+
+    </div><!--/span-->
+  </div><!--/row-->
+
+  <footer>
+  <p>&copy; Adina 2016</p>
+  </footer>
+
+</div> <!-- /container -->
 
   </body>
 </html>

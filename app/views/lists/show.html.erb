@@ -1,8 +1,5 @@
-
-<p id="notice"><%= notice %></p>
-
-<h1><%= @list.name %></h1>
 <div id='list' class='jumbotron'>
+  <h3><%= @list.name %></h3>
   <table class="table table-hover table-striped table-condensed">
     <thead>
       <tr>
@@ -16,28 +13,43 @@
 
       <tbody>
         <% @gifts.each do |gift| %>
-          <tr>
-            <td><%= gift.requester.username.capitalize%></td>
-            <td><%= gift.name  %></td>
-            <% if gift.claimed%>
-              <td class: "btn btn-default btn-danger"><span class="label label-success">Claimed</span></td>
-            <% else %>
-            <td>
-                <%= link_to 'I Got This!', gift_path(gift), class: "btn btn-default btn-danger"  %>
-            </td>
-            <% end %>
-            <td><%= gift.buyer.username.capitalize%> </td>
-            <td >
-              <%= link_to 'Edit', edit_gift_path(gift), class: "btn btn-warning" %>
-              <%= link_to 'Delete', gift, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
-            </td>
-          </tr>
+          <% if gift.requester_id != current_user.id%>
+            <tr>
+              <td><%= gift.requester.username.capitalize%></td>
+              <td><%= gift.name  %></td>
+              <% if gift.buyer.present?%>
+                <td class: "btn btn-default btn-success"><span class="label label-success">Claimed</span></td>
+                <td><%= gift.buyer.username.capitalize%> </td>
+              <% else %>
+                <td>
+                  <%= link_to 'I Got This!', claim_gift_path(gift), method: :post, class: "btn btn-default btn-success btn-sm"  %>
+                </td>
+                <td> ----- </td>
+              <% end %>
+              <td >
+                <%= link_to 'X', unclaim_gift_path(gift), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
+              </td>
+              <% if gift.buyer_id == current_user.id %>
+              <td >
+                <%= link_to 'Unclaim', gift, method: :delete, class: "btn btn-warning btn-sm"%>
+              </td>
+            <%end%>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
 
   </div>
-    <%= render 'gift', gift: @gift%>
-    <br>
-    <%= link_to 'Back', root_path, class: "btn btn-default btn-primary"  %>
 </div>
+
+<div class="col-lg-3">
+  <div class="well sidebar-nav container-fluid">
+    <%= render 'lists/gift', gift: @gift%>
+  </div>
+</div><!--/.well -->
+
+<script>
+  $(".alert-success").fadeOut(2000);
+
+</script>
