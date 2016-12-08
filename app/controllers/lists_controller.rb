@@ -2,7 +2,13 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = current_user.lists
+      #hack for Atwells to be removed
+    @lists = [ ]
+    if current_user.id < 11
+        @lists.push(List.first)
+    end
+
+    @lists.push(current_user.lists)
     @list = List.new
   end
 
@@ -21,7 +27,11 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = current_user.lists.create(name: list_params[:name])
+    if current_user.lists
+        @list = current_user.lists.create(name: list_params[:name])
+    else
+        @list = List.find(1)
+    end
     redirect_to lists_path
   end
 
