@@ -8,7 +8,7 @@
         <ul class="list-group">
             <% @my_gifts.each do |gift| %>
             <li class="list-group-item">
-                <span class=class="label label-danger"><%= link_to 'X', delete_my_gift_path(gift), method: :delete, class:"label label-danger" %></span>
+                <span class=class="label label-danger"><%= link_to 'X', list_gift_path(@list,gift), method: :delete, class:"label label-danger" %></span>
                 <%= gift.name  %>
             </li>
                 <% end %>

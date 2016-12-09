@@ -53,12 +53,14 @@
                         <li><a class='subtext' href="/">Keep It Secret Keep It Safe</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <% if @list.id.present? %>
                         <li>
-                            <a href="/lists/1">Complete List</a>
+                            <%= link_to 'Complete List', list_path(@list) %>
                         </li>
                         <li>
-                            <a href="/gifts">My Gifts</a>
+                            <%= link_to 'My Gifts', list_gifts_path(@list) %>
                         </li>
+                        <% end %>
                         <% if user_signed_in? %>
                         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
                         <% else %>
