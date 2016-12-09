@@ -5,9 +5,11 @@
 <div class='sigin'>
     <div class="border-form-div">
         <h4 id='list-name'><strong>My Wishlist</strong></h4>
-        <ul>
+        <ul class="list-group">
             <% @requested_gifts.each do |gift| %>
-            <li><%= gift.name  %></li>
+            <li class="list-group-item">
+                <span class=class="label label-danger"><%= link_to 'X', delete_my_gift_path(gift), method: :delete, class:"label label-danger" %></span>
+                <%= gift.name  %></li>
             <% end %>
         </ul>
         <%= render 'wishlist', gift: @gift%>

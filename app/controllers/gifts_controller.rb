@@ -47,6 +47,11 @@ class GiftsController < ApplicationController
     redirect_to @list
   end
 
+  def delete_my_gift
+      @gift.destroy
+      redirect_to gifts_path
+  end
+
   def claim
     @gift.update(buyer_id: current_user.id)
     redirect_to list_path(@list.id)
