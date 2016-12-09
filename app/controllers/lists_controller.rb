@@ -19,7 +19,7 @@ class ListsController < ApplicationController
 
     def show
         @list = List.find(params[:id])
-        @gifts = Gift.where(list_id: params[:id])
+        @gifts = Gift.where(list_id: params[:id]).sort
         @gift = Gift.new
         @users = User.all.pluck(:username).map{ |name| name.capitalize }.sort.sort
     end
