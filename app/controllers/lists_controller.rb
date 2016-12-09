@@ -8,7 +8,9 @@ class ListsController < ApplicationController
         @lists.push(List.first)
     end
 
-    @lists.push(current_user.lists)
+    if current_user.lists
+        @lists.push(current_user.lists)
+    end
     @list = List.new
   end
 
