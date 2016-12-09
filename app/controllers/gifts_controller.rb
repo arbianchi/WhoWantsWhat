@@ -3,17 +3,9 @@ class GiftsController < ApplicationController
 
   def index
     @gift = Gift.new
-
-    @requested_gifts = [ ]
-    @claimed_gifts = [ ]
-
-    Gift.all.each do |gift|
-        if gift.buyer_id == current_user.id
-            @claimed_gifts.push(gift)
-        elsif gift.requester_id == current_user.id
-            @requested_gifts.push(gift)
-        end
-    end
+    requested_gifts = Gift.where(requester_id: current_user.id)
+    @my_gifts = requested_gifts.find_all{ |gift| gift.created_by == current_user.id}
+    @claimed_gifts = Gift.where(buyer_id: current_user.id)
   end
 
   def show
