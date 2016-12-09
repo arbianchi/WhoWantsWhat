@@ -6,9 +6,10 @@ class ListsController < ApplicationController
       #hack for Atwells to be removed
     if current_user.lists.present?
         @lists << current_user.lists
-        if current_user.id < 12
-            @lists << List.first
-        end
+    end
+
+    if current_user.id < 12
+        @lists << List.first
     end
     @list = List.new
   end
