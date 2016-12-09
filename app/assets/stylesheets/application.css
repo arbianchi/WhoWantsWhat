@@ -44,6 +44,14 @@ body {
     /*background-color: red;*/
 }
 
+.panel {
+    background-color: white;
+    vertical-align: middle;
+    margin: 100px;
+    padding: 20px;
+}
+
+
 .border-form-div {
     vertical-align: middle;
     display: inline-block;
