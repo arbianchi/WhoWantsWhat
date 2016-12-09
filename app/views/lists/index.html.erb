@@ -9,12 +9,12 @@
         <li class="list-group-item">
             <%= link_to list.name, list_path(list) %>
         </li>
-            <% end %>
         <% if current_user.id == 1 %>
         <li><%= link_to 'Edit', edit_list_path(list) %></li>
         <li><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <%end%>
-        </ul>
+        <% end %>
+    </ul>
 
 </div>
 
