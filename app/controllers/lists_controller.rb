@@ -2,11 +2,13 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
+      @lists = []
       #hack for Atwells to be removed
-    if current_user.lists
-        @lists = current_user.lists
-    else
-        @lists = List.first
+    if current_user.lists.present?
+        @lists << current_user.lists
+        if current_user.id < 12
+            @lists << List.first
+        end
     end
     @list = List.new
   end
