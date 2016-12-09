@@ -10,7 +10,7 @@ class GiftsController < ApplicationController
     Gift.all.each do |gift|
         if gift.buyer_id == current_user.id
             @claimed_gifts.push(gift)
-        elsif gift.created_by == current_user.id && gift.requester_id == current_user.id
+        elsif gift.requester_id == current_user.id
             @requested_gifts.push(gift)
         end
     end
