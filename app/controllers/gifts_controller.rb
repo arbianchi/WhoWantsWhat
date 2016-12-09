@@ -6,6 +6,7 @@ class GiftsController < ApplicationController
     requested_gifts = Gift.where(requester_id: current_user.id)
     @my_gifts = requested_gifts.find_all{ |gift| gift.created_by == current_user.id}
     @claimed_gifts = Gift.where(buyer_id: current_user.id)
+    @possessive_user = current_user.username[-1] == 's' ? current_user.username.capitalize + "'" : current_user.username.capitalize + "'s"
   end
 
   def show

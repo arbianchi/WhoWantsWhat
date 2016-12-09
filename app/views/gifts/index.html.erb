@@ -4,7 +4,7 @@
 
 <div class='sigin float-right'>
     <div class="border-form-div">
-        <h4 id='wishlist'><strong>My Wishlist</strong></h4>
+        <h4 id='wishlist'><strong><%=@possessive_user%> Wishlist</strong></h4>
         <ul class="list-group">
             <% @my_gifts.each do |gift| %>
             <li class="list-group-item">
