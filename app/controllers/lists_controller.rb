@@ -3,13 +3,10 @@ class ListsController < ApplicationController
 
   def index
       #hack for Atwells to be removed
-    @lists = [ ]
-    if current_user.id < 11
-        @lists.push(List.first)
-    end
-
     if current_user.lists
         @lists.push(current_user.lists)
+    else
+        @lists = List.first
     end
     @list = List.new
   end
