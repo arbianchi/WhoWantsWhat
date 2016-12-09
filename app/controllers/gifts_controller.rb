@@ -10,9 +10,6 @@ class GiftsController < ApplicationController
         @possessive_user = current_user.username[-1] == 's' ? current_user.username.capitalize + "'" : current_user.username.capitalize + "'s"
     end
 
-    def show
-    end
-
     def new
         @gift = Gift.new
     end
@@ -44,12 +41,6 @@ class GiftsController < ApplicationController
             @gift.destroy
             redirect_to @list
         end
-    end
-
-    def delete_my_gift
-        @gift = gift_params[:gift_id]
-        @gift.destroy
-        redirect_to list_gifts_path
     end
 
     def claim
