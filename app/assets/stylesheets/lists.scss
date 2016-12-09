@@ -11,9 +11,28 @@
       margin-bottom: 10px;
   }
 
+  container {
+     vertical-align: middle;
+
+  }
+
 th {
     text-align: center;
+    background-color: white;
 }
+
+.panel {
+    background-color: white;
+    vertical-align: middle;
+    margin: 100px;
+    padding: 20px;
+}
+
+.jumbotron {
+      color: white;
+      text-shadow: black 0.3em 0.3em 0.3em;
+      background: transparent;
+    }
 
 .pico-signin {
     max-width: 450px;

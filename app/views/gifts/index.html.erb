@@ -1,39 +1,40 @@
-<div class='container'>
-    <h4 id='list-name'>My Gifts</h4>
+<div class='jumbotron'>
+    <h2 id='list-name'>My Gifts</h2>
 </div>
 
-<div class='sigin'>
+<div class='sigin float-right'>
     <div class="border-form-div">
         <h4 id='list-name'><strong>My Wishlist</strong></h4>
         <ul class="list-group">
             <% @my_gifts.each do |gift| %>
             <li class="list-group-item">
                 <span class=class="label label-danger"><%= link_to 'X', delete_my_gift_path(gift), method: :delete, class:"label label-danger" %></span>
-                <%= gift.name  %></li>
-            <% end %>
-        </ul>
-        <%= render 'wishlist', gift: @gift%>
-    </div>
+                <%= gift.name  %>
+            </li>
+                <% end %>
+            </ul>
+            <%= render 'wishlist', gift: @gift%>
+        </div>
 
-    <div id='list' class='jumbotron col-md-4'>
-        <table class="table table-hover table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th>Claimed Gifts</th>
-                    <th></th>
-                    <th>Recipient</th>
-                </tr>
-            </thead>
+        <div class='panel panel-default col-md-4'>
+            <table class="table table-hover table-responsive table-inverse table-condensed float-left">
+                <thead>
+                    <tr>
+                        <th>Claimed Gifts</th>
+                        <th></th>
+                        <th>Recipient</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody>
                     <% @claimed_gifts.each do |claimed_gift| %>
-                <tr>
-                    <td><%= claimed_gift.name.capitalize  %></td>
-                    <td>for</td>
-                    <td><%= claimed_gift.requester.username.capitalize  %></td>
-                </tr>
+                    <tr>
+                        <td><%= claimed_gift.name.capitalize  %></td>
+                        <td>for</td>
+                        <td><%= claimed_gift.requester.username.capitalize  %></td>
+                    </tr>
                     <% end %>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>

@@ -15,10 +15,25 @@
 *= require rails_bootstrap_forms
 
 */
-body {
-    background: url('/assets/presents.jpg');
+
+html, body {
+    margin: 0;
+    height: 100%;
 }
 
+body {
+    background: url('/assets/presents.jpg');
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+
+#site-name {
+    color: white;
+}
+
+.subtext {
+    color: #666666;
+}
 .pico-signin {
     max-width: 450px;
     float: right;
@@ -59,4 +74,41 @@ body {
 
 .subtext {
     text-align: center;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: white;  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: 	white; /*BACKGROUND color for active*/
+background-color: #030033;
+}
+
+  .navbar-default {
+    background-color: #800000;
+    border-color: #030033;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: #262626;
+   text-decoration: none;
+  background-color: #66CCFF;  /*change color of links in drop down here*/
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: blue; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: #D3D3D3; /*Change active text color here*/
+    }
+
+.navbar-brand{
+    color: white;
 }

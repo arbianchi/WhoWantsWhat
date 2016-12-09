@@ -18,7 +18,8 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @gifts = Gift.where(list_id: params[:id])
     @gift = Gift.new
-    @users = @list.users.all.pluck(:username).sort.map{ |name| name.capitalize }
+    # @users = @list.users.all.pluck(:username).sort.map{ |name| name.capitalize }
+    @users = User.all.pluck(:username).sort.map{ |name| name.capitalize }
   end
 
   def new
