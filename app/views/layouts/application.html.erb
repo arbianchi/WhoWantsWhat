@@ -53,7 +53,7 @@
                         <li><a class='subtext' href="/">Keep It Secret Keep It Safe</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <% if @list.id.present? %>
+                        <% if @list.present? && @list.id.present? %>
                         <li>
                             <%= link_to 'Complete List', list_path(@list) %>
                         </li>
