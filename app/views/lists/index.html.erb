@@ -4,20 +4,24 @@
 <h2 id='list-name'>Gift Lists:</h2>
 
 <div class='panel panel-default'>
-    <ul class="list-group">
-        <% @lists.each do |list| %>
-        <li class="list-group-item">
-            <%= link_to list.name, list_path(list) %>
-        </li>
-        <% if current_user.id == 1 %>
-        <li><%= link_to 'Edit', edit_list_path(list) %></li>
-        <li><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-        <%end%>
-        <% end %>
-    </ul>
+    <table class="table table-hover table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>My Lists</th>
+                <th></th>
+            </tr>
+        </thead>
 
-</div>
-
-<div class='panel panel-default'
-<%= render 'form', list: @list %>
+        <tbody>
+            <% @lists.each do |list| %>
+            <tr>
+                <td><%= link_to list.name, list_path(list) %></td>
+                <td>
+                    <%= link_to 'Edit', edit_list_path(list) %>
+                    <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
