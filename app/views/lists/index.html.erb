@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <br>
-<h2 id='list-name'>Gift Lists:</h2>
+<h2 id='list-name'>Gift Lists</h2>
 
 <div class='panel panel-default'>
     <table class="table table-hover table-striped table-condensed">
         <thead>
             <tr>
-                <th>My Lists</th>
-                <th></th>
+                <%= bootstrap_form_for @list, url: lists_path, wrapper_html: {class: "form-inline"} do |f| %>
+                    <%= f.submit 'Start New List', class: "btn btn-primary" %>
+                    <%= f.text_field :name, hide_label: true, placeholder: "Gift List Name" %>
+                <% end %>
             </tr>
         </thead>
 

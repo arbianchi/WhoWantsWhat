@@ -1,29 +1,26 @@
-<div class='sigin'>
-    <div class="border-form-div">
-        <h2>WhoWantsWhat</h2>
-        <h4 class='subtext'>Gift Manager</h4>
-        <p>Manage your family's gifts WITHOUT revealing which gifts you're getting and who's getting them!</p>
-        <br>
-        <h4>Sign Up</h4>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>
+<div class="border-form-div">
+    <h2>WhoWantsWhat</h2>
+    <h4 class='subtext'>Gift Manager</h4>
+    <h4>Sign Up</h4>
+    <br>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-          <%= f.label :username %><br />
-          <%= f.text_field :username, autofocus: true %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
 
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
 
-          <%= f.password_field :password, autocomplete: "off" %>
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.submit "Sign up", class:"btn btn-primary" %>
 
-        <%= f.submit "Sign up" %>
-
-        <% end %>
-        <%= render "devise/shared/links" %>
-    </div>
-    <%= image_tag('pico1.png', class:'pico-signin') %>
+    <% end %>
+    <%= render "devise/shared/links" %>
 </div>
+<%= image_tag('pico1.png', class:'pico-signin') %>

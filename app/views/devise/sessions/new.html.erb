@@ -1,23 +1,22 @@
-<div class='sigin'>
-    <div class="border-form-div">
-        <h2>WhoWantsWhat</h2>
-        <h4 class='subtext'>Gift Manager</h4>
-        <p>Manage your family's gifts WITHOUT revealing which gifts you're getting and who's getting them!</p>
-        <h4>Sign in</h4>
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <%= f.text_field :username, :autofocus => true %>
-        <%= f.password_field :password %>
-        <%= f.submit "Sign in" %>
-
-        <% if devise_mapping.rememberable? -%>
-        <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-        </div>
-        <% end -%>
-
-        <% end %>
-        <%= render "devise/shared/links" %>
-    </div>
-    <%= image_tag('pico1.png', class:'pico-signin') %>
+<div class="border-form-div">
+  <h2>WhoWantsWhat</h2>
+  <h4 class='subtext'>Gift Manager</h4>
+  <p>Manage your family's gifts WITHOUT revealing which gifts you're getting and who's getting them!</p>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email, :autofocus => true %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "Sign in", class:"btn btn-primary" %>
+  
+  <% if devise_mapping.rememberable? -%>
+  <div class="field">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me, style:"display:inline-block;" %>
+  </div>
+  <% end -%>
+  
+  <% end %>
+  <%= render "devise/shared/links" %>
 </div>
+<%= image_tag('pico1.png', class:'pico-signin') %>
