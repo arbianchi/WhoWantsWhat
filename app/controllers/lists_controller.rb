@@ -21,7 +21,7 @@ class ListsController < ApplicationController
     end
 
     def create
-        @list = current_user.lists.create(name: list_params[:name])
+        @list = current_user.lists.create(name: list_params[:name], owner_id: current_user.id)
         redirect_to lists_path
     end
 
@@ -50,6 +50,5 @@ class ListsController < ApplicationController
 
     def list_params
         params.require(:list).permit(:name, :user_id)
-        # params.fetch(:list, {})
     end
 end

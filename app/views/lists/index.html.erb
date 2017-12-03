@@ -4,26 +4,43 @@
 <h2 id='list-name'>Gift Lists</h2>
 
 <div class='panel panel-default'>
-    <table class="table table-hover table-striped table-condensed">
-        <thead>
-            <tr>
-                <%= bootstrap_form_for @list, url: lists_path, wrapper_html: {class: "form-inline"} do |f| %>
-                    <%= f.submit 'Start New List', class: "btn btn-primary" %>
-                    <%= f.text_field :name, hide_label: true, placeholder: "Gift List Name" %>
-                <% end %>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @lists.each do |list| %>
-            <tr>
-                <td><%= link_to list.name, list_path(list) %></td>
-                <td>
-                    <%= link_to 'Edit', edit_list_path(list) %>
-                    <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+  <table class="table table-hover table-striped table-condensed">
+    <thead>
+      <tr>
+        <div >
+        <%= bootstrap_form_for @list, url: lists_path do |f| %>
+          <%= f.text_field :name, hide_label: true, placeholder: "Gift List Name" %>
+          <%= f.submit 'Start New List', class: "btn btn-primary", id: 'submit_new' %>
+        <% end %>
+      </div>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @lists.each do |list| %>
+      <tr>
+        <td><%= link_to list.name, list_path(list) %></td>
+        <td>
+          <% if current_user.id === list.owner_id %>
+            <%= link_to 'Edit', edit_list_path(list) %>
+            <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
+<style>
+.form-group {
+  display:inline-block;
+}
+#submit_new {
+  vertical-align: top;
+}
+
+#list_name {
+  vertical-align: bottom;
+}
+</style>
