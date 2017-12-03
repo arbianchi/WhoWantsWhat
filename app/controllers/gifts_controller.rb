@@ -66,6 +66,9 @@ class GiftsController < ApplicationController
     end
 
     def create_gift requester
+      puts 'REQUESTER======================='
+      puts requester
+      
         @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list_id: 1, created_by: current_user.id)
     end
 end
