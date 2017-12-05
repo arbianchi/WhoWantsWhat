@@ -7,11 +7,10 @@ class ListsController < ApplicationController
     end
 
     def show
-      binding.pry
         @list = List.find(params[:id])
         @gifts = Gift.where(list_id: params[:id]).sort
         @gift = Gift.new
-        @users = User.all.reject{|u| u.id === current_user.id}.pluck(:username)
+        @users = User.all.reject{|u| u.id === current_user.id}.pluck(:username).sort
     end
 
     def new
