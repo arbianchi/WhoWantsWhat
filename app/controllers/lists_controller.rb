@@ -10,7 +10,7 @@ class ListsController < ApplicationController
         @list = List.find(params[:id])
         @gifts = Gift.where(list_id: params[:id]).sort
         @gift = Gift.new
-        @users = User.all.pluck(:username)
+        @users = User.all.reject{|u| u.id === current_user.id}.pluck(:username).sort
     end
 
     def new

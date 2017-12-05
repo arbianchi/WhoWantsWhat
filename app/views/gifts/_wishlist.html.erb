@@ -1,7 +1,7 @@
 <div class="actions" >
   <h5>Add To My Wishlist</h5>
   <%= bootstrap_form_for @gift, url: list_gifts_path(@list) do |f| %>
-  <%= f.text_field :name, hide_label: true, placeholder: "Item" %>
-  <button class="btn btn-primary btn-sm">Add</button>
+    <%= f.text_field :name, hide_label: true, placeholder: "Item" %>
+    <button class="btn btn-primary btn-sm">Add</button>
   <% end %>
 </div>
