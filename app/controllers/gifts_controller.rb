@@ -15,7 +15,7 @@ class GiftsController < ApplicationController
     end
 
     def create
-        @list = List.find(1)
+        @list = List.find(params[:list_id])
         if gift_params[:requester].present?
             requester = User.where(username: gift_params[:requester]).first || current_user
             create_gift( requester )
@@ -66,6 +66,6 @@ class GiftsController < ApplicationController
     end
 
     def create_gift requester
-        @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list_id: 1, created_by: current_user.id)
+        @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list: @list, created_by: current_user.id)
     end
 end
