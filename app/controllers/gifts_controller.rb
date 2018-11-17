@@ -57,7 +57,7 @@ class GiftsController < ApplicationController
 
     def set_constants
         @gift = Gift.find(params[:id])
-        @list = List.find(1)
+        @list = List.find(@gift.list_id)
     end
 
     def gift_params
