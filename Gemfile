@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 # gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'sprockets', '~>3.7.2'
+
 
 gem 'devise'
 gem 'pundit'
