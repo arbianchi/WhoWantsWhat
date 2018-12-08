@@ -62,10 +62,26 @@ class GiftsController < ApplicationController
 
     def gift_params
         params.require(:gift).permit(:name, :requester)
-        # params.fetch(:gift, {})
     end
 
     def create_gift requester
-        @gift = Gift.create!(name: gift_params[:name], requester_id: requester.id, list: @list, created_by: current_user.id)
+        @gift = Gift.create!(name: build_name, requester_id: requester.id, list: @list, created_by: current_user.id)
+    end
+
+    def build_name
+      if params[:url].present?
+        name_to_link
+      else
+        gift_params[:name]
+      end
+    end
+
+    def name_to_link
+      url = params[:url]
+      if !url.start_with?('http')
+        url = "https://" + url
+      end
+
+      "<a href='#{url}' target='_blank'>#{gift_params[:name]}</a>"
     end
 end
