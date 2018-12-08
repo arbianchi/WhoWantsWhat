@@ -39,7 +39,7 @@
         <% if gift.requester_id != current_user.id%>
       		<tr>
             <td data-label="Requester" class="requester" class="requester"><%= gift.requester.username.capitalize%></td>
-            <td data-label="Gift" class="gift"><%= gift.name %></td>
+            <td data-label="Gift" class="gift"><%= gift.name.html_safe %></td>
             <% if gift.buyer.present?%>
               <td data-label="Claim" class="claim">
                 <% if gift.buyer_id == current_user.id%>
